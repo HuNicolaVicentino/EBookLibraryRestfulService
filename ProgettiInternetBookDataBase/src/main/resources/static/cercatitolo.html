@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <title id="pageTitle">Risultato</title>
+</head>
+<body>
+  <h1 id="titoloPagina">Risultati</h1>
+  <div id="contenitoreLibri"></div>
+  
+  <script type="text/javascript">       
+    const titolo = sessionStorage.getItem("titoloRicerca");
+
+    if (titolo) {
+      document.title = titolo;
+      document.getElementById("titoloPagina").innerText = titolo;
+
+      fetch(`http://localhost:8080/cercatitolo?titolo=${encodeURIComponent(titolo)}`)
+        .then(response => response.json())
+        .then(data => {
+          const contenitore = document.getElementById('contenitoreLibri');
+          for (let i = 0; i < data.linklibri.length; i++) {
+            const img = document.createElement('img');
+            img.src = data.linklibri[i];
+            img.alt = "Libro " + data.idlibri[i];
+            img.width = 200;
+
+            const titolo = document.createElement('p');
+            titolo.textContent = `ID Libro: ${data.idlibri[i]}`;
+
+            const libroDiv = document.createElement('div');
+            libroDiv.appendChild(titolo);
+            libroDiv.appendChild(img);
+
+            contenitore.appendChild(libroDiv);
+          }
+          console.log("Dati ricevuti dal server:", data);
+        }) 
+        .catch(error => console.error("Errore nel caricamento della libreria:", error));
+    }
+  </script>
+</body>
+</html>

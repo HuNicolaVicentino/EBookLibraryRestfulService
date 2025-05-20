@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <title>Libreria</title>
+</head>
+<body>
+
+
+<script type="text/javascript">   fetch('http://localhost:8080/Library')
+.then(response => response.json())
+.then(data => {
+  const contenitore = document.getElementById('libreria');
+  for (let i = 0; i < data.linklibri.length; i++) {
+    const img = document.createElement('img');
+    img.src = data.linklibri[i];
+    img.alt = "Libro " + data.idlibri[i];
+    img.width = 200;
+    const titolo = document.createElement('p');
+    titolo.textContent = `ID Libro: ${data.idlibri[i]}`;
+    const libroDiv = document.createElement('div');
+    libroDiv.appendChild(titolo);
+    libroDiv.appendChild(img);
+    contenitore.appendChild(libroDiv);
+    console.log("Dati ricevuti dal server:", data);
+
+  }
+}) 
+.catch(error => console.error("Errore nel caricamento della libreria:", error));</script>
+<a href="http://localhost:8080/Library">HOME PAGE</a>
+<a href="http://localhost:8080/cercagenere?genere=azione">Azione</a>
+<a href="http://localhost:8080/cercagenere?genere=horror">Horror</a>
+<a href="http://localhost:8080/cercagenere?genere=comico">Comico</a>
+
+
+  <form onsubmit="cercaTitolo(event)">
+    <input type="text" id="titoloInput" placeholder="Inserisci titolo">
+    <button type="submit">Cerca</button>
+  </form>
+  
+  <script>
+    function cercaTitolo(e) {
+      e.preventDefault();
+      const titolo = document.getElementById("titoloInput").value;
+      // Salvo il titolo nella sessionStorage
+      sessionStorage.setItem("titoloRicerca", titolo);
+      // Apro nuova pagina
+      window.location.href = "cercatitolo.html";
+    }
+  </script>
+
+
+  <div id="libreria"></div>
+</body>
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <title>Login - Portale E-Book</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .login-container {
+            background-color: white;
+            padding: 30px 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+            width: 320px;
+            text-align: center;
+        }
+
+        .login-container h2 {
+            font-size: 20px;
+            margin-bottom: 15px;
+            font-weight: bold;
+            color: #222;
+        }
+
+        .login-container input[type="text"],
+        .login-container input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+
+        .login-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 15px;
+        }
+
+        .login-footer a {
+            font-size: 13px;
+            text-decoration: none;
+            color: #007bff;
+        }
+
+        .login-footer a:hover {
+            text-decoration: underline;
+        }
+
+        .login-footer input[type="submit"] {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .login-footer input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+    </style>
+</head>
+<body>
+
+    <h1>PORCA TROTIA</h1>
+
+    <div class="login-container">
+        <h2>Login</h2> <!-- 👈 Titolo centrato, grassetto, più grande -->
+
+        <form action="/LogIn" method="POST">
+            <input type="text" id="UserName" name="UserName" placeholder="Inserire Nome Utente" required>
+            <input type="password" id="Password" name="Password" placeholder="Inserire la Password" required>
+
+            <div class="login-footer">
+                <a href="/RegisterPage.html">Registrati</a>
+                <input type="submit" value="Accedi">
+            </div>
+        </form>
+    </div>
+
+</body>
+</html>
